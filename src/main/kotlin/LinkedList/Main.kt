@@ -1,4 +1,6 @@
-import java.awt.geom.Line2D
+package LinkedList
+
+import example
 
 /*
  * Copyright (c) 2021 Razeware LLC
@@ -49,7 +51,7 @@ fun main() {
     }
 //
 //    "append" example{
-//        val list = LinkedList<Int>()
+//        val list = LinkedList.LinkedList<Int>()
 //
 //        list.append(1).append(2).append(3)
 //
@@ -57,7 +59,7 @@ fun main() {
 //    }
 //
 //    "inserting at a particular index" example {
-//        val list = LinkedList<Int>()
+//        val list = LinkedList.LinkedList<Int>()
 //        list.push(3).push(2).push(1)
 //
 //        println("Before inserting: $list")
@@ -70,7 +72,7 @@ fun main() {
 //    }
 //
 //    "pop" example {
-//        val list = LinkedList<Int>()
+//        val list = LinkedList.LinkedList<Int>()
 //        list.push(3).push(2).push(1)
 //
 //        println("Before popping: $list")
@@ -150,7 +152,7 @@ fun main() {
         println(list)
     }
 
-    "Reverse LinkedList" example {
+    "Reverse LinkedList.LinkedList" example {
         val list = LinkedList<Int>()
         list.add(3)
         list.add(2)
@@ -186,6 +188,26 @@ fun main() {
 
         println("Original List: $list")
         println("Reversed List: ${list.reversed()}")
+    }
+
+    "Merge lists" example {
+
+        val list = LinkedList<Int>()
+        list.add(1)
+        list.add(6)
+        list.add(8)
+        list.add(9)
+
+        val other = LinkedList<Int>()
+        other.add(2)
+        other.add(3)
+        other.add(5)
+        other.add(7)
+
+        println("Left $list")
+        println("Right $other")
+        println("Merged: ${list.mergeSorted(other)}")
+
     }
 
 }

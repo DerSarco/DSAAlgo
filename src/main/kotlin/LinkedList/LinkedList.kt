@@ -1,3 +1,5 @@
+package LinkedList
+
 class LinkedList<T : Any> :
     Iterable<T>,
     Collection<T>,
@@ -28,7 +30,7 @@ class LinkedList<T : Any> :
 
     /**
      * Función que agrega una nuevo nodo al inicio
-     * del LinkedList
+     * del LinkedList.LinkedList
      */
     fun push(value: T): LinkedList<T> = apply {
         head = Node(value = value, next = head)
@@ -40,7 +42,7 @@ class LinkedList<T : Any> :
 
     /**
      * Función que agrega una nuevo nodo al final
-     * del LinkedList
+     * del LinkedList.LinkedList
      */
     fun append(value: T): LinkedList<T> = apply {
         if (isEmpty()) {
@@ -87,7 +89,7 @@ class LinkedList<T : Any> :
     }
 
     /**
-     * Función que elimina la primera entrada de la LinkedList
+     * Función que elimina la primera entrada de la LinkedList.LinkedList
      */
 
     fun pop(): T? {
@@ -103,7 +105,7 @@ class LinkedList<T : Any> :
     }
 
     /**
-     * Función para remover ultima entrada de la LinkedList
+     * Función para remover ultima entrada de la LinkedList.LinkedList
      */
 
     fun removeLast(): T? {
@@ -131,7 +133,7 @@ class LinkedList<T : Any> :
 
     /**
      * Función que remueve un nodo de un punto especifico
-     * de la LinkedList
+     * de la LinkedList.LinkedList
      */
 
     fun removeAfter(node: Node<T>): T? {
@@ -148,7 +150,7 @@ class LinkedList<T : Any> :
     }
 
     /**
-     * Función que imprime la LinkedList reversada
+     * Función que imprime la LinkedList.LinkedList reversada
      */
     fun printedInReverse() {
         if (isEmpty()) {
@@ -159,7 +161,7 @@ class LinkedList<T : Any> :
     }
 
     /**
-     * Función que crea una nueva LinkedList reversada
+     * Función que crea una nueva LinkedList.LinkedList reversada
      */
 
     fun <T : Any> addInReverse(list: LinkedList<T>, node: Node<T>) {
