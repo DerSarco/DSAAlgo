@@ -1,4 +1,4 @@
-package LinkedList
+package chapter3LinkedList
 
 import example
 

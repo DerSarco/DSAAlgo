@@ -1,9 +1,3 @@
-import LinkedList.LinkedList
-import LinkedList.Node
-import stackdatastructures.StackImpl
-import stackdatastructures.printInReverseStack
-import stackdatastructures.stackOf
-
 /*
  * Copyright (c) 2019 Razeware LLC
  *
@@ -34,50 +28,61 @@ import stackdatastructures.stackOf
  * THE SOFTWARE.
  */
 
-fun main() {
-    "Using a Stack" example {
-        val stack = StackImpl<Int>().apply {
-            push(1)
-            push(2)
-            push(3)
-            push(4)
-        }
+package chapter5queues.ringbuffer
 
-        print(stack)
-        val poppedElement = stack.pop()
-        if (poppedElement != null) {
-            println("Popped: $poppedElement")
-        }
-        println(stack)
+class RingBuffer<T>(private val size: Int) {
+
+  private var array = ArrayList<T?>(size)
+  private var readIndex = 0
+  private var writeIndex = 0
+
+  val count: Int
+    get() = availableSpaceForReading
+
+  private val availableSpaceForReading: Int
+    get() = (writeIndex - readIndex)
+
+  val first: T?
+    get() = array.getOrNull(readIndex)
+
+  val isEmpty: Boolean
+    get() = (count == 0)
+
+  private val availableSpaceForWriting: Int
+    get() = (size - availableSpaceForReading)
+
+  val isFull: Boolean
+    get() = (availableSpaceForWriting == 0)
+
+  fun write(element: T): Boolean {
+    return if (!isFull) {
+      if (array.size < size) {
+        array.add(element)
+      } else {
+        array[writeIndex % size] = element
+      }
+      writeIndex += 1
+      true
+    } else {
+      false
     }
+  }
 
-    "Initializing a stack from a list" example {
-        val list = listOf("A", "B", "C", "D")
-        val stack = StackImpl.create(list)
-        print(stack)
-        println("Popped: ${stack.pop()}")
+  fun read(): T? {
+    return if (!isEmpty) {
+      val element = array[readIndex % size]
+      readIndex += 1
+      element
+    } else {
+      null
     }
+  }
 
-    "Initializing a stack from an array literal" example {
-        val stack = stackOf(1.0, 2.0, 3.0, 4.0)
-        print(stack)
-        println("Popped: ${stack.pop()}")
+  override fun toString(): String {
+    val values = (0 until availableSpaceForReading).map { offset ->
+      "${array[(readIndex + offset) % size]!!}"
     }
+    return values.joinToString(prefix = "[", separator = ", ", postfix = "]")
+  }
 
-    /**
-     * Challenges
-     */
-
-    "Reverse a LinkedList" example {
-        val list = LinkedList<Int>().apply {
-            add(1)
-            add(2)
-            add(3)
-            add(4)
-        }
-
-        println("List: $list")
-        println("Reversed List")
-        list.printInReverseStack()
-    }
 }

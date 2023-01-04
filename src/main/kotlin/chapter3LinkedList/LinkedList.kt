@@ -1,4 +1,4 @@
-package LinkedList
+package chapter3LinkedList
 
 class LinkedList<T : Any> :
     Iterable<T>,
