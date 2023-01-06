@@ -1,5 +1,6 @@
 package chapter5queues
 
+import chapter5queues.doublestack.StackQueue
 import chapter5queues.linkedlist.LinkedListQueue
 import chapter5queues.ringbuffer.RingBuffer
 import chapter5queues.ringbuffer.RingBufferQueue
@@ -41,6 +42,18 @@ fun main() {
         queue.dequeue()
         println(queue)
         println("Next up: ${queue.peek()}")
+    }
 
+    "Queue with double stack" example {
+        val queue = StackQueue<String>().apply {
+            enqueue("Brian")
+            enqueue("Ryan")
+            enqueue("Mark")
+        }
+
+        println(queue)
+        queue.dequeue()
+        println(queue)
+        println("Next up: ${queue.peek()}")
     }
 }

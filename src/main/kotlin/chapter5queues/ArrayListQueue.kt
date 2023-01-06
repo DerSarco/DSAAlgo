@@ -2,7 +2,6 @@ package chapter5queues
 
 class ArrayListQueue<T : Any> : Queue<T> {
     private val list = arrayListOf<T>()
-
     override fun enqueue(element: T): Boolean {
         list.add(element)
         return true
