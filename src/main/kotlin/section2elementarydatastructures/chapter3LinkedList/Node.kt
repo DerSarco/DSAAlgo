@@ -1,4 +1,4 @@
-package chapter3LinkedList
+package section2elementarydatastructures.chapter3LinkedList
 
 data class Node<T : Any>(var value: T, var next: Node<T>? = null) {
     override fun toString(): String {

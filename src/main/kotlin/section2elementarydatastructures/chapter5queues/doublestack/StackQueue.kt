@@ -1,6 +1,6 @@
-package chapter5queues.doublestack
+package section2elementarydatastructures.chapter5queues.doublestack
 
-import chapter5queues.Queue
+import section2elementarydatastructures.chapter5queues.Queue
 
 class StackQueue<T : Any> : Queue<T> {
     private val leftStack= StackImpl<T>()

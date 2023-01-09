@@ -1,9 +1,8 @@
-package chapter5queues
+package section2elementarydatastructures.chapter5queues
 
-import chapter5queues.doublestack.StackQueue
-import chapter5queues.linkedlist.LinkedListQueue
-import chapter5queues.ringbuffer.RingBuffer
-import chapter5queues.ringbuffer.RingBufferQueue
+import section2elementarydatastructures.chapter5queues.doublestack.StackQueue
+import section2elementarydatastructures.chapter5queues.linkedlist.LinkedListQueue
+import section2elementarydatastructures.chapter5queues.ringbuffer.RingBufferQueue
 import example
 
 fun main() {

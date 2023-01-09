@@ -28,78 +28,61 @@
  * THE SOFTWARE.
  */
 
-package chapter5queues.linkedlist
+package section2elementarydatastructures.chapter5queues.ringbuffer
 
-class DoublyLinkedList<T> {
+class RingBuffer<T>(private val size: Int) {
 
-  fun isEmpty(): Boolean {
-    return head == null
+  private var array = ArrayList<T?>(size)
+  private var readIndex = 0
+  private var writeIndex = 0
+
+  val count: Int
+    get() = availableSpaceForReading
+
+  private val availableSpaceForReading: Int
+    get() = (writeIndex - readIndex)
+
+  val first: T?
+    get() = array.getOrNull(readIndex)
+
+  val isEmpty: Boolean
+    get() = (count == 0)
+
+  private val availableSpaceForWriting: Int
+    get() = (size - availableSpaceForReading)
+
+  val isFull: Boolean
+    get() = (availableSpaceForWriting == 0)
+
+  fun write(element: T): Boolean {
+    return if (!isFull) {
+      if (array.size < size) {
+        array.add(element)
+      } else {
+        array[writeIndex % size] = element
+      }
+      writeIndex += 1
+      true
+    } else {
+      false
+    }
   }
 
-  private var head: Node<T>? = null
-  private var tail: Node<T>? = null
-
+  fun read(): T? {
+    return if (!isEmpty) {
+      val element = array[readIndex % size]
+      readIndex += 1
+      element
+    } else {
+      null
+    }
+  }
 
   override fun toString(): String {
-    if (isEmpty()) {
-      return "Empty list"
+    val values = (0 until availableSpaceForReading).map { offset ->
+      "${array[(readIndex + offset) % size]!!}"
     }
-    return head.toString()
+    return values.joinToString(prefix = "[", separator = ", ", postfix = "]")
   }
-
-
-  fun append(value: T) {
-
-    val newNode = Node(value = value, previous = tail)
-    if (isEmpty()) {
-      head = newNode
-      tail = newNode
-      return
-    }
-
-    tail?.next = newNode
-
-    tail = newNode
-  }
-
-  fun node(index: Int): Node<T>? {
-    // 1
-    var currentNode = head
-    var currentIndex = 0
-
-    // 2
-    while (currentNode != null && currentIndex < index) {
-      currentNode = currentNode.next
-      currentIndex += 1
-    }
-
-    return currentNode
-  }
-
-  fun remove(node: Node<T>): T {
-
-    val prev = node.previous
-    val next = node.next
-
-    if (prev != null) {
-      prev.next = node.previous
-    } else {
-      head = next
-    }
-
-    next?.previous = prev
-
-    if (next == null) {
-      tail = prev
-    }
-
-    node.previous = null
-    node.next = null
-
-    return node.value
-  }
-
-  val first: Node<T>?
-    get() = head
 
 }

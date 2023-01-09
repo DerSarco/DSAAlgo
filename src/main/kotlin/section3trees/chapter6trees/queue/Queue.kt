@@ -27,76 +27,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package chapter5queues.doublestack
 
-/**
- * The Stack interface.
- */
-interface Stack<Element> {
+interface Queue<T> {
 
-  /**
-   * Push of an Element into the stack.Stack
-   */
-  fun push(element: Element)
+  fun enqueue(element: T): Boolean
 
-  /**
-   * Pops an element from the stack.Stack if any or returns null.
-   */
-  fun pop(): Element?
+  fun dequeue(): T?
 
   val count: Int
     get
 
-  fun peek(): Element?
-
   val isEmpty: Boolean
     get() = count == 0
-}
 
-/**
- * Simple stack.Stack implementation using an ArrayList
- */
-class StackImpl<Element> : Stack<Element> {
-
-  private val storage = arrayListOf<Element>()
-
-  companion object {
-    fun <Element> create(items: Iterable<Element>): Stack<Element> {
-      val stack = StackImpl<Element>()
-      for (item in items) {
-        stack.push(item)
-      }
-      return stack
-    }
-  }
-
-  override fun push(element: Element) {
-    storage.add(element)
-  }
-
-  override fun pop(): Element? {
-    if (isEmpty) {
-      return null
-    }
-    return storage.removeAt(count - 1)
-  }
-
-  override fun peek(): Element? {
-    return storage.lastOrNull()
-  }
-
-  override val count: Int
-    get() = storage.size
-
-  override fun toString() = buildString {
-    appendLine("----top----")
-    storage.asReversed().forEach {
-      appendLine("$it")
-    }
-    appendLine("-----------")
-  }
-}
-
-fun <Element> stackOf(vararg elements: Element): Stack<Element> {
-  return StackImpl.create(elements.asList())
+  fun peek(): T?
 }

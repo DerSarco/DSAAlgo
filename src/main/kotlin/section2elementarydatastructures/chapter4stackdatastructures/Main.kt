@@ -1,8 +1,8 @@
-import chapter3LinkedList.LinkedList
-import chapter4stackdatastructures.StackImpl
-import chapter4stackdatastructures.checkParentheses
-import chapter4stackdatastructures.printInReverseStack
-import chapter4stackdatastructures.stackOf
+import section2elementarydatastructures.chapter3LinkedList.LinkedList
+import section2elementarydatastructures.chapter4stackdatastructures.StackImpl
+import section2elementarydatastructures.chapter4stackdatastructures.checkParentheses
+import section2elementarydatastructures.chapter4stackdatastructures.printInReverseStack
+import section2elementarydatastructures.chapter4stackdatastructures.stackOf
 
 /*
  * Copyright (c) 2019 Razeware LLC

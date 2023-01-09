@@ -1,4 +1,4 @@
-package chapter4stackdatastructures
+package section2elementarydatastructures.chapter4stackdatastructures
 
 class StackImpl<T : Any> : Stack<T> {
     private val storage = arrayListOf<T>()

@@ -1,4 +1,4 @@
-package chapter5queues
+package section2elementarydatastructures.chapter5queues
 
 interface Queue<T : Any> {
     fun enqueue(element: T): Boolean

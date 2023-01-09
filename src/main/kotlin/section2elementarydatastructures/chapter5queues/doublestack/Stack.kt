@@ -27,62 +27,76 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package section2elementarydatastructures.chapter5queues.doublestack
 
-package chapter5queues.ringbuffer
+/**
+ * The Stack interface.
+ */
+interface Stack<Element> {
 
-class RingBuffer<T>(private val size: Int) {
+  /**
+   * Push of an Element into the stack.Stack
+   */
+  fun push(element: Element)
 
-  private var array = ArrayList<T?>(size)
-  private var readIndex = 0
-  private var writeIndex = 0
+  /**
+   * Pops an element from the stack.Stack if any or returns null.
+   */
+  fun pop(): Element?
 
   val count: Int
-    get() = availableSpaceForReading
+    get
 
-  private val availableSpaceForReading: Int
-    get() = (writeIndex - readIndex)
-
-  val first: T?
-    get() = array.getOrNull(readIndex)
+  fun peek(): Element?
 
   val isEmpty: Boolean
-    get() = (count == 0)
+    get() = count == 0
+}
 
-  private val availableSpaceForWriting: Int
-    get() = (size - availableSpaceForReading)
+/**
+ * Simple stack.Stack implementation using an ArrayList
+ */
+class StackImpl<Element> : Stack<Element> {
 
-  val isFull: Boolean
-    get() = (availableSpaceForWriting == 0)
+  private val storage = arrayListOf<Element>()
 
-  fun write(element: T): Boolean {
-    return if (!isFull) {
-      if (array.size < size) {
-        array.add(element)
-      } else {
-        array[writeIndex % size] = element
+  companion object {
+    fun <Element> create(items: Iterable<Element>): Stack<Element> {
+      val stack = StackImpl<Element>()
+      for (item in items) {
+        stack.push(item)
       }
-      writeIndex += 1
-      true
-    } else {
-      false
+      return stack
     }
   }
 
-  fun read(): T? {
-    return if (!isEmpty) {
-      val element = array[readIndex % size]
-      readIndex += 1
-      element
-    } else {
-      null
-    }
+  override fun push(element: Element) {
+    storage.add(element)
   }
 
-  override fun toString(): String {
-    val values = (0 until availableSpaceForReading).map { offset ->
-      "${array[(readIndex + offset) % size]!!}"
+  override fun pop(): Element? {
+    if (isEmpty) {
+      return null
     }
-    return values.joinToString(prefix = "[", separator = ", ", postfix = "]")
+    return storage.removeAt(count - 1)
   }
 
+  override fun peek(): Element? {
+    return storage.lastOrNull()
+  }
+
+  override val count: Int
+    get() = storage.size
+
+  override fun toString() = buildString {
+    appendLine("----top----")
+    storage.asReversed().forEach {
+      appendLine("$it")
+    }
+    appendLine("-----------")
+  }
+}
+
+fun <Element> stackOf(vararg elements: Element): Stack<Element> {
+  return StackImpl.create(elements.asList())
 }

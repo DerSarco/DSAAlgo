@@ -1,6 +1,6 @@
-package chapter5queues.ringbuffer
+package section2elementarydatastructures.chapter5queues.ringbuffer
 
-import chapter5queues.Queue
+import section2elementarydatastructures.chapter5queues.Queue
 
 class RingBufferQueue<T: Any>(size: Int): Queue<T> {
     private val ringBuffer: RingBuffer<T> = RingBuffer(size)

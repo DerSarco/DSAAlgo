@@ -1,4 +1,4 @@
-package chapter3LinkedList
+package section2elementarydatastructures.chapter3LinkedList
 
 class LinkedList<T : Any> :
     Iterable<T>,

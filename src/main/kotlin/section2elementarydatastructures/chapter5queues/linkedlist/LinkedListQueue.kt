@@ -1,6 +1,6 @@
-package chapter5queues.linkedlist
+package section2elementarydatastructures.chapter5queues.linkedlist
 
-import chapter5queues.Queue
+import section2elementarydatastructures.chapter5queues.Queue
 
 class LinkedListQueue<T : Any> : Queue<T> {
     private val list = DoublyLinkedList<T>()

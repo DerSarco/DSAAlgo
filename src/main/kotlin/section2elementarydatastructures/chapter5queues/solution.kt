@@ -1,9 +1,9 @@
-package chapter5queues
+package section2elementarydatastructures.chapter5queues
 
-import chapter5queues.doublestack.StackImpl
-import chapter5queues.doublestack.StackQueue
-import chapter5queues.linkedlist.LinkedListQueue
-import chapter5queues.ringbuffer.RingBufferQueue
+import section2elementarydatastructures.chapter5queues.doublestack.StackImpl
+import section2elementarydatastructures.chapter5queues.doublestack.StackQueue
+import section2elementarydatastructures.chapter5queues.linkedlist.LinkedListQueue
+import section2elementarydatastructures.chapter5queues.ringbuffer.RingBufferQueue
 import example
 
 fun main() {
@@ -94,6 +94,20 @@ fun main() {
         queue.dequeue()
         queue.enqueue("K")
         println(queue)
+        /**
+         * Left Stack:
+        ----top----
+        L
+        G
+        R
+        O
+        -----------
+        Right Stack:
+        ----top----
+        K
+        C
+        -----------
+         */
     }
 
     //Challenges

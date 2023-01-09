@@ -1,4 +1,4 @@
-package chapter4stackdatastructures
+package section2elementarydatastructures.chapter4stackdatastructures
 
 interface Stack<T : Any> {
     fun push(element: T)

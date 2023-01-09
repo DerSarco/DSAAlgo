@@ -1,6 +1,6 @@
-package chapter4stackdatastructures
+package section2elementarydatastructures.chapter4stackdatastructures
 
-import chapter3LinkedList.LinkedList
+import section2elementarydatastructures.chapter3LinkedList.LinkedList
 
 
 fun <T : Any> LinkedList<T>.printInReverseStack() {

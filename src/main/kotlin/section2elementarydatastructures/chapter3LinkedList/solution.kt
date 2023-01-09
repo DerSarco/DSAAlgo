@@ -1,4 +1,4 @@
-package chapter3LinkedList
+package section2elementarydatastructures.chapter3LinkedList
 
 fun <T : Any> Node<T>.printReversed() {
     this.next?.printReversed()
